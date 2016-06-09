@@ -18,7 +18,7 @@ class Application {
     /**
      * O nome da aplicação
      */
-    const APP_NAME = 'Planilha de Custos';
+    const APP_NAME = 'Planilha Financeiro';
 
     /**
      * Constante para uma mensagem de sucesso.
