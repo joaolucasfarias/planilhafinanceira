@@ -28,7 +28,7 @@ class Application {
     /**
      * Constante para mensagem de erro.
      */
-    const MSG_ERROR = 'Erro durante a operação...';
+    const MSG_ERROR = 'Erro durante a operação.';
 
     /**
      * Constante para mensagem de objeto não encontrado.
