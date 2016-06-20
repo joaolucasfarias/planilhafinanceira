@@ -7,7 +7,7 @@ namespace app\model;
  *
  * @author João Lucas Farias
  */
-final class Itens extends \core\mvc\Model {
+final class ItensModel extends \core\mvc\Model {
 
     /**
      * Nome do item.
