@@ -34,19 +34,27 @@ final class MesModel extends \core\mvc\Model {
     private $totalSaldo;
 
     /**
+     * Grupo que o mês pertence
+     * @var app\model\GrupoModel 
+     */
+    private $grupo;
+
+    /**
      * Método construtor.
      * @param Integer $id id do mês.
      * @param String $nome nome do mês.
      * @param Double $totalGeral total geral do mês.
      * @param Double $totalPago total pago do mês.
      * @param Double $totalSaldo total de saldo do mês.
+     * @param app\model\GrupoModel $grupo grupo do mês.
      */
-    public function __construct($id = null, $nome = null, $totalGeral = null, $totalPago = null, $totalSaldo = null) {
+    public function __construct($id = null, $nome = null, $totalGeral = null, $totalPago = null, $totalSaldo = null, app\model\GrupoModel $grupo = null) {
         parent::__construct($id);
         $this->nome = $nome;
         $this->totalGeral = $totalGeral;
         $this->totalPago = $totalPago;
         $this->totalSaldo = $totalSaldo;
+        is_null($grupo) ? $this->grupo = new GrupoModel() : $this->grupo = $grupo;
     }
 
     public function show() {
@@ -86,6 +94,14 @@ final class MesModel extends \core\mvc\Model {
     }
 
     /**
+     * Retorna o grupo do mês
+     * @return app\model\GrupoModel
+     */
+    function getGrupo() {
+        return $this->grupo;
+    }
+
+    /**
      * Modifica o nome do mês.
      * @param String $nome
      */
@@ -115,6 +131,14 @@ final class MesModel extends \core\mvc\Model {
      */
     function setTotalSaldo(type $totalSaldo) {
         $this->totalSaldo = $totalSaldo;
+    }
+
+    /**
+     * Modifica o grupo do mês
+     * @param \app\model\GrupoModel $grupo
+     */
+    function setGrupo(app\model\GrupoModel $grupo) {
+        $this->grupo = $grupo;
     }
 
 }
