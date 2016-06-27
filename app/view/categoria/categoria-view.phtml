@@ -5,11 +5,33 @@
 <form method="post" action="Request.php?class=app\controller\CategoriaCtr&method=run">
     <input type="hidden" name="id" id="id" value="<?= $this->model->getId() ?>">
     <div class="row">
-        <div class="small-">
+        <div class="small-12 medium-12 large-12 columns">
             <label>
                 Nome da Categoria:
-                <input type="text" name="nome" id="nome" value="<?= $this->model->getNome() ?>" maxlength="50" required="required">
+                <input type="text" name="nome" id="nome" value="<?= $this->model->getNome() ?>" maxlength="100" required="required">
             </label>
+        </div>        
+    </div>
+    <div class="row">
+        <div class="small-12 medium-6 large-4 columns">
+            <label>Operação:</label>
+            <label>
+                <input required="required" type="radio" <?php if (strcmp($this->model->getValorBase(), "C")) { ?> checked="checked" <?php } ?> name="operacao" value="C">Crédito
+            </label>
+            <label>
+                <input required="required" type="radio" <?php if (strcmp($this->model->getValorBase(), "D")) { ?> checked="checked" <?php } ?> name="operacao" value="D">Débito
+            </label>
+        </div>
+        <div class="small-12 medium-6 large-8 columns">
+            <label for="valortotal">Valor total:</label>
+            <div class="row collapse prefix-radius">
+                <div class="small-3 columns">
+                    <span class="prefix">R$</span>
+                </div>
+                <div class="small-9 columns">
+                    <input type="num" name="valortotal" id="valorbase" value="<?= $this->model->getValorTotal() ?>" id="valor" readonly="readonly">
+                </div>
+            </div>
         </div>
     </div>
     <div class="row">
