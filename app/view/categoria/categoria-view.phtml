@@ -1,7 +1,8 @@
 <div class="row">
+    <br/>
     <h2 class="text-center">Cadastro de Categorias</h2>
+    <hr>
 </div>
-<hr>
 <form method="post" action="Request.php?class=app\controller\CategoriaCtr&method=run">
     <input type="hidden" name="id" id="id" value="<?= $this->model->getId() ?>">
     <div class="row">
@@ -14,13 +15,9 @@
     </div>
     <div class="row">
         <div class="small-12 medium-6 large-4 columns">
-            <label>Operação:</label>
-            <label>
-                <input required="required" type="radio" <?php if (strcmp($this->model->getValorBase(), "C")) { ?> checked="checked" <?php } ?> name="operacao" value="C">Crédito
-            </label>
-            <label>
-                <input required="required" type="radio" <?php if (strcmp($this->model->getValorBase(), "D")) { ?> checked="checked" <?php } ?> name="operacao" value="D">Débito
-            </label>
+            Operação: <br/>
+            <input required="required" id="c" type="radio" <?php if ($this->model->getOperacao() == "C") { ?> checked="checked" <?php } ?> name="operacao" value="C"><label for="c">Crédito</label>
+            <input required="required" id="d" type="radio" <?php if ($this->model->getOperacao() == "D") { ?> checked="checked" <?php } ?> name="operacao" value="D"><label for="d">Débito</label>
         </div>
         <div class="small-12 medium-6 large-8 columns">
             <label for="valortotal">Valor total:</label>
@@ -29,28 +26,30 @@
                     <span class="prefix">R$</span>
                 </div>
                 <div class="small-9 columns">
-                    <input type="num" name="valortotal" id="valorbase" value="<?= $this->model->getValorTotal() ?>" id="valor" readonly="readonly">
+                    <input type="number" name="valortotal" id="valorbase" value="<?= $this->model->getTotal() ?>" id="valor" readonly="readonly">
                 </div>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="small-12 medium-4 large-4 columns">
-            <input type="submit" class="button expand round" name="comando" value="Novo">
+            <input type="submit" class="button expand radius success" name="comando" value="Salvar">
+        </div>        
+        <div class="small-12 medium-4 large-4 columns">
+            <input type="submit" class="button expand radius" name="comando" value="Novo">
         </div>
         <div class="small-12 medium-4 large-4 columns">
-            <input type="submit" class="button expand round success" name="comando" value="Salvar">
-        </div>
-        <div class="small-12 medium-4 large-4 columns">
-            <input type="submit" class="button expand round alert" name="Excluir" value="Excluir">
+            <input type="submit" class="button expand radius alert" name="Excluir" value="Excluir">
         </div>
     </div>
     <br/>
-    <hr/>
+    <div class="row">
+        <hr/>
+    </div>
     <br/>
     <div class="row">
         <div class="small-12 medium-4 large-4 medium-centered large-centered columns">
-            <a class="button tiny expand round" href="Request.php?class=app\controller\CategoriaCtr&method=showList">Listagem</a>
+            <a class="button expand radius secondary" href="Request.php?class=app\controller\CategoriaCtr&method=showList">Listagem</a>
         </div>
     </div>
     <br>
