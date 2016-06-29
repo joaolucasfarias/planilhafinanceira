@@ -9,13 +9,13 @@ namespace app\dao;
  */
 class CategoriaDao extends \core\dao\Dao {
 
-    const TB_NOME = 'nome';
+    const TB_NOME = 'nomecategoria';
     const TB_OPERACAO = 'operacao';
     const TB_TOTAL = 'total';
 
     function __construct(\app\model\CategoriaModel $model = null) {
         parent::__construct($model);
-        $this->tableId = 'idCategoria';
+        $this->tableId = 'idcategoria';
         $this->tableName = 'categoria';
         if (!$model) {
             $this->model = new \app\model\CategoriaModel ();
@@ -56,6 +56,19 @@ class CategoriaDao extends \core\dao\Dao {
             } else {
                 return NULL;
             }
+        } catch (\Exception $ex) {
+            throw $ex;
+        }
+    }
+
+    public function insertUpdate($returnId = null) {
+        try {
+            $sqlObj = new \core\dao\SqlObject($this->connection);
+            if (!$this->model->getId()) {
+                $dados = array(self::TB_NOME => $this->model->getNome(), self::TB_OPERACAO => $this->model->getOperacao());
+                $sqlObj->insert($this->tableName, $dados);
+            } else
+                $sqlObj->update($this->tableName, $this->columns, $this->tableId . " = {$this->model->getId()}");
         } catch (\Exception $ex) {
             throw $ex;
         }

@@ -2,6 +2,6 @@
 
 require_once 'autoload.php';
 
-$view = new app\view\item\ItemView();
+$view = new app\view\categoria\CategoriaView();
 $view->show();
 

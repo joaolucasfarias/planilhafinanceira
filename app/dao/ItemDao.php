@@ -9,7 +9,7 @@ namespace app\dao;
  */
 class ItemDao extends \core\dao\Dao {
 
-    const TB_NOME = 'nome';
+    const TB_NOME = 'nomeItem';
     const TB_VALOR_BASE = 'valorBase';
     const TB_ID_CATEGORIA = 'idCategoria';
     const TB_ID_GRUPO = 'idGrupo';
