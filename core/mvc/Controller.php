@@ -60,13 +60,18 @@ abstract class Controller {
 //..invoca o método insertUpdate para persistir o Model
             $this->dao->insertUpdate();
 //..cria uma view com mensagem de scuesso.
-            $msg = new \core\mvc\view\Message(\core\Application::MSG_SUCCESS);
+//$msg = new \core\mvc\view\Message(\core\Application::MSG_SUCCESS);
+            $erro = "false";
+            $msg = \core\Application::MSG_SUCCESS;
         } catch (\Exception $ex) {
 //..caso ocorra algum erro, cria uma view com mensagem de erro
-            $msg = new \core\mvc\view\Message(\core\Application::MSG_ERROR . "\n{$ex->getMessage()}");
+//$msg = new \core\mvc\view\Message(\core\Application::MSG_ERROR . "\n{$ex->getMessage()}");
+            $erro = "true";
+            $msg = \core\Application::MSG_ERROR . "\n{$ex->getMessage()}";
         } finally {
-//..mostra a view criada
-            $msg->show();
+//..mostra a view criada            
+            $array['resposta'] = "<h2 id='modalTitle'>Resposta da opera&ccedil;&atilde;o!</h2><p class='lead'>{$msg}</p><a class='close-reveal-modal' onClick='recarregar({$erro})' aria-label='Close'>&#215;</a><script src='core/vendor/js/foundation.reveal.js'></script><script>$(document).foundation();$(document).foundation('reveal', 'reflow');</script>";
+            echo json_encode($array);
         }
     }
 
