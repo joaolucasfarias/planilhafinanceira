@@ -48,4 +48,14 @@ class CategoriaCtr extends \core\mvc\Controller {
         }
     }
 
+    public function retornarCategoriasJson() {
+        try {
+            $nome = $this->get['nome'];
+            $operacao = $this->get['operacao'];
+            echo $this->dao->selectJson($nome, $operacao);
+        } catch (\Exception $ex) {
+            echo 'erro';
+        }
+    }
+
 }

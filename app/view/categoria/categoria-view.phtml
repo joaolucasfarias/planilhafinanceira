@@ -45,14 +45,14 @@
         }
         ?>
         <div class="small-12 <?= $medium ?> <?= $large ?> columns">
-            <input type="submit" onclick="return salvarAjax('Request.php?class=app\\controller\\CategoriaCtr&method=run')" class="button expand radius success" name="comando" value="Salvar">
+            <input type="submit" onclick="return salvarAjax('Request.php?class=app\\controller\\CategoriaCtr&method=run', 'salvar')" class="button expand radius success" name="comando" value="Salvar">
         </div>        
         <div class="small-12 <?= $medium ?> <?= $large ?> columns">
             <input type="submit" class="button expand radius info" name="comando" value="Novo">
         </div>
         <?php if ($this->model->getId() != null && $this->model->getId() != 0) { ?>
             <div class="small-12 <?= $medium ?> <?= $large ?> columns">
-                <input type="submit" onclick="return perguntaExcluir()" class="button expand radius alert" name="comando" value="Excluir">
+                <input type="submit" onclick="return perguntaExcluir('Request.php?class=app\\controller\\CategoriaCtr&method=run', 'excluir')" class="button expand radius alert" name="comando" value="Excluir">
             </div>
         <?php } ?>
     </div>

@@ -74,4 +74,22 @@ class CategoriaDao extends \core\dao\Dao {
         }
     }
 
+    public function selectJson($nome = null, $operacao = null) {
+        try {
+            $sqlObj = new \core\dao\SqlObject($this->connection);
+            $select = "upper(" . \app\dao\CategoriaDao::TB_NOME . ") like upper('{$nome}%') ";
+            if ($operacao == "C" || $operacao == "D") {
+                $select = $select . " AND " . \app\dao\CategoriaDao::TB_OPERACAO . "= '{$operacao}'";
+            }
+            $dados = $sqlObj->select($this->tableName, '*', $select, \app\dao\CategoriaDao::TB_NOME);
+            if ($dados) {
+                return json_encode($dados);
+            } else {
+                return 'erro';
+            }
+        } catch (\Exception $ex) {
+            throw $ex;
+        }
+    }
+
 }

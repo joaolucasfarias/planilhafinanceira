@@ -3,7 +3,7 @@
     <h2 class="text-center">Lista de Categorias</h2>
     <hr>
 </div>
-<form method="post" action="Request.php?class=app\controller\CategoriaCtr&method=showList">
+<form method="post" action="#">
     <div class="row">
         <h5 class="text-left">Parâmetros para pesquisa</h5>
     </div>
@@ -22,7 +22,7 @@
     </div>
     <div class="row">
         <div class="small-8 small-centered medium-6 medium-centered large-5 large-centered columns">
-            <input type="submit" class="button tiny success radius" name="comando" value="Listar">
+            <button type="button" onclick="retornarCategoriasJson()" class="button tiny success radius" name="listar">Listar</button>
             <input type="reset" class="button tiny secondary radius" value="Limpar">
             <a class="button tiny radius" href="Request.php?class=app\controller\CategoriaCtr&method=showView">Cadastrar</a>
         </div>
@@ -44,22 +44,7 @@
                     <th>Ver categoria</th>
                 </tr>
             </thead>
-            <tbody>
-                <?php
-                if ($this->model) {
-                    foreach ($this->model as $categoria) {
-                        ?>
-                        <tr>
-                            <td><?= $categoria->getId() ?></td>
-                            <td><?= $categoria->getNome() ?></td>
-                            <td><?php if ($categoria->getOperacao() == "C") { ?>Crédito<?php } else { ?>Débito<?php } ?></td>
-                            <td>R$ <?= $categoria->getTotal() ?></td>
-                            <td><a class="button tiny info radius" href="Request.php?class=app\controller\CategoriaCtr&method=showView&id=<?= $categoria->getId() ?>">VER</a></td>
-                        </tr>
-                        <?php
-                    }
-                }
-                ?>
+            <tbody id="tabelaGrande">
             </tbody>
         </table>
         <div class="show-for-small-only small-12">
@@ -71,20 +56,7 @@
                         <th>Ver categoria</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <?php
-                    if ($this->model) {
-                        foreach ($this->model as $categoria) {
-                            ?>
-                            <tr>
-                                <td><?= $categoria->getId() ?></td>
-                                <td><?= $categoria->getNome() ?></td>
-                                <td><a class="button tiny info radius" href="Request.php?class=app\controller\CategoriaCtr&method=showView&id=<?= $categoria->getId() ?>">VER</a></td>
-                            </tr>
-                            <?php
-                        }
-                    }
-                    ?>
+                <tbody id="tabelaPequena">
                 </tbody>
             </table>
         </div>
