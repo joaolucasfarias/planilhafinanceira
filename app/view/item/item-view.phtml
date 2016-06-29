@@ -3,7 +3,7 @@
     <h2 class="text-center">Cadastro de Itens</h2>
     <hr>
 </div>
-<form method="post" action="Request.php?class=app\controller\ItemCtr&method=run">
+<form method="post" id="formCadastro" action="Request.php?class=app\controller\ItemCtr&method=run">
     <input type="hidden" name="id" id="id" value="<?= $this->model->getId() ?>">
     <div class="row">
         <div class="small-12 medium-6 large-4 columns">
@@ -24,13 +24,14 @@
             </div>
         </div>
         <div class="small-12 medium-3 large-4 columns">
+            <input type="hidden" name="idCategoria" id="idCategoria" value="0"/>
             <label for="categoria">Categoria:</label>
             <div class="row collapse prefix-radius">                
                 <div class="small-9 columns">
                     <input type="text" name="categoria" id="categoria" value="<?= $this->model->getCategoria()->getNome() ?>" readonly="" required="required">
                 </div>
                 <div class="small-3 columns">
-                    <a href="#" class="button postfix lupaFundo"></a>
+                    <a href="" class="button postfix lupaFundo"></a>
                 </div>
             </div>
         </div>
@@ -46,14 +47,14 @@
         }
         ?>
         <div class="small-12 <?= $medium ?> <?= $large ?> columns">
-            <input type="submit" class="button expand radius success" name="comando" value="Salvar">
+            <input type="submit" onclick="return salvarAjax('Request.php?class=app\\controller\\ItemCtr&method=run', 'salvar')" class="button expand radius success" name="comando" value="Salvar">
         </div>        
         <div class="small-12 <?= $medium ?> <?= $large ?> columns">
             <input type="submit" class="button expand radius info" name="comando" value="Novo">
         </div>
         <?php if ($this->model->getId() != null && $this->model->getId() != 0) { ?>
             <div class="small-12 <?= $medium ?> <?= $large ?> columns">
-                <input type="submit" class="button expand radius alert" name="comando" value="Excluir">
+                <input type="submit" onclick="return perguntaExcluir('Request.php?class=app\\controller\\ItemCtr&method=run', 'excluir')" class="button expand radius alert" name="comando" value="Excluir">
             </div>
         <?php } ?>
     </div>
