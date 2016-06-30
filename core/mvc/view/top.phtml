@@ -19,9 +19,24 @@
                 <!-- Left Nav Section -->
                 <ul class="left">
                     <li class="has-dropdown">
-                        <a href="#">Controle</a>
+                        <a href="#">Cadastros</a>
                         <ul class="dropdown">
-                            <li><a href="#">Item</a></li>
+                            <li><a href="Request.php?class=app\controller\CategoriaCtr&method=showView">Categoria</a></li>
+                            <li><a href="Request.php?class=app\controller\ItemCtr&method=showView">Itens</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="#">Listagens</a>
+                        <ul class="dropdown">
+                            <li><a href="Request.php?class=app\controller\CategoriaCtr&method=showList">Categoria</a></li>
+                            <li><a href="Request.php?class=app\controller\ItemCtr&method=showList">Itens</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="#">Relatórios</a>
+                        <ul class="dropdown">
+                            <li><a href="Request.php?class=app\controller\RelatorioCtr&method=showViewCategoria">Categoria</a></li>
+                            <li><a href="Request.php?class=app\controller\RelatorioCtr&method=showViewItem">Itens</a></li>
                         </ul>
                     </li>
                 </ul>
