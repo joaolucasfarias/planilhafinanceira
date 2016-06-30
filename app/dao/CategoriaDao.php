@@ -61,18 +61,18 @@ class CategoriaDao extends \core\dao\Dao {
         }
     }
 
-    public function insertUpdate($returnId = null) {
-        try {
-            $sqlObj = new \core\dao\SqlObject($this->connection);
-            if (!$this->model->getId()) {
-                $dados = array(self::TB_NOME => $this->model->getNome(), self::TB_OPERACAO => $this->model->getOperacao());
-                $sqlObj->insert($this->tableName, $dados);
-            } else
-                $sqlObj->update($this->tableName, $this->columns, $this->tableId . " = {$this->model->getId()}");
-        } catch (\Exception $ex) {
-            throw $ex;
-        }
-    }
+    /* public function insertUpdate($returnId = null) {
+      try {
+      $sqlObj = new \core\dao\SqlObject($this->connection);
+      if (!$this->model->getId()) {
+      $dados = array(self::TB_NOME => $this->model->getNome(), self::TB_OPERACAO => $this->model->getOperacao());
+      $sqlObj->insert($this->tableName, $dados);
+      } else
+      $sqlObj->update($this->tableName, $this->columns, $this->tableId . " = {$this->model->getId()}");
+      } catch (\Exception $ex) {
+      throw $ex;
+      }
+      } */
 
     public function selectJson($nome = null, $operacao = null) {
         try {

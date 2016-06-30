@@ -8,7 +8,7 @@
     <div class="row">
         <div class="small-12 medium-6 large-4 columns">
             <label>
-                Nome da Categoria:
+                Nome do Item:
                 <input type="text" name="nome" value="<?= $this->model->getNome() ?>" maxlength="100" required="required">
             </label>
         </div>
@@ -19,19 +19,23 @@
                     <span class="prefix">R$</span>
                 </div>
                 <div class="small-9 columns">
-                    <input type="number" name="valorbase" id="valorbase" value="<?= $this->model->getValorBase() ?>" id="valorbase" required="required">
+                    <input type="number" name="valorbase" step="0.01" id="valorbase" value="<?= $this->model->getValorBase() ?>" id="valorbase" required="required">
                 </div>
             </div>
         </div>
         <div class="small-12 medium-3 large-4 columns">
-            <input type="hidden" name="idCategoria" id="idCategoria" value="0"/>
-            <label for="categoria">Categoria:</label>
+            <input type="hidden" name="idcategoria" id="idcategoria" value="<?php if ($this->model->getCategoria()->getId() == null) { ?>0<?php
+            } else {
+                echo $this->model->getCategoria()->getNome();
+            }
+            ?>"/>
+            <label for="nomecategoria">Categoria:</label>
             <div class="row collapse prefix-radius">                
                 <div class="small-9 columns">
-                    <input type="text" name="categoria" id="categoria" value="<?= $this->model->getCategoria()->getNome() ?>" readonly="" required="required">
+                    <input type="text" name="nomecategoria" id="nomecategoria" value="<?= $this->model->getCategoria()->getNome() ?>" readonly="" required="required">
                 </div>
                 <div class="small-3 columns">
-                    <a href="" class="button postfix lupaFundo"></a>
+                    <a href="" data-reveal-id="myModal" class="button postfix lupaFundo"></a>
                 </div>
             </div>
         </div>
@@ -47,7 +51,7 @@
         }
         ?>
         <div class="small-12 <?= $medium ?> <?= $large ?> columns">
-            <input type="submit" onclick="return salvarAjax('Request.php?class=app\\controller\\ItemCtr&method=run', 'salvar')" class="button expand radius success" name="comando" value="Salvar">
+            <input type="submit" onclick="return validarCamposModal('idcategoria,nomecategoria', 'Request.php?class=app\\controller\\ItemCtr&method=run', 'salvar')" class="button expand radius success" name="comando" value="Salvar">
         </div>        
         <div class="small-12 <?= $medium ?> <?= $large ?> columns">
             <input type="submit" class="button expand radius info" name="comando" value="Novo">
@@ -70,3 +74,64 @@
     </div>
     <br>
 </form>
+
+
+<div id="myModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+    <h2 id="modalTitle">Listagem de Categorias</h2>
+    <p class="lead">Parâmetros para pesquisa.</p>
+    <div class="row">
+        <div class="small-12 medium-7 large-8 columns">
+            <label>Nome:
+                <input type="text" name="nome" id="nome">
+            </label>
+        </div>
+        <div class="small-12 medium-5 large-4 columns">
+            Operação: <br/>
+            <input id="c" type="radio" name="operacao" value="C"><label for="c">Crédito</label>
+            <input id="d" type="radio" name="operacao" value="D"><label for="d">Débito</label>
+            <input id="t" type="radio" name="operacao" value="todas" checked><label for="t">Todas</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-8 small-centered medium-4 medium-centered large-3 large-centered columns">
+            <button type="button" onclick="retornarCategoriasJsonModal()" class="button tiny success radius" name="listar">Listar</button>
+            <input type="reset" class="button tiny secondary radius" value="Limpar">
+        </div>
+    </div> 
+</form>
+<br/>
+<div class="row">
+    <hr/>
+    <h5 class="text-left">Listagem</h5>
+    <br/>
+    <div class="small-12 medium-12 large-12 columns">
+        <table class="show-for-medium-up medium-12 large-12 columns">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nome</th>
+                    <th>Operação</th>
+                    <th>Total</th>
+                    <th>Ver categoria</th>
+                </tr>
+            </thead>
+            <tbody id="tabelaGrande">
+            </tbody>
+        </table>
+        <div class="show-for-small-only small-12">
+            <table class="small-12 columns">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nome</th>
+                        <th>Ver categoria</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelaPequena">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<a class="close-reveal-modal" aria-label="Close">&#215;</a>
+</div>

@@ -1,0 +1,79 @@
+<div class="row">
+    <br/>
+    <h2 class="text-center">Lista de Itens</h2>
+    <hr>
+</div>
+<form method="post" action="#">
+    <div class="row">
+        <h5 class="text-left">Parâmetros para pesquisa</h5>
+    </div>
+    <div class="row">
+        <div class="small-12 medium-4 large-7 columns">
+            <label>Nome:
+                <input type="text" name="nome" id="nome">
+            </label>
+        </div>
+        <div class="small-12 medium-4 large-2 columns">
+            <label>
+                Parâmetro do valor:
+                <select name="parametro" id="parametro">
+                    <option value="1" selected>Igual a</option>
+                    <option value="2">Maior (ou igual) que</option>
+                    <option value="3">Menor (ou igual) que</option>
+                    <option value="4">Diferente de</option>
+                </select>
+            </label>
+        </div>
+        <div class="small-12 medium-4 large-3 columns">
+            <label for="valor">Valor base:</label>
+            <div class="row collapse prefix-radius">
+                <div class="small-3 columns">
+                    <span class="prefix">R$</span>
+                </div>
+                <div class="small-9 columns">
+                    <input type="number" name="valor" id="valor">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-8 small-centered medium-6 medium-centered large-5 large-centered columns">
+            <button type="button" onclick="retornarItensJson()" class="button tiny success radius" name="listar">Listar</button>
+            <input type="reset" class="button tiny secondary radius" value="Limpar">
+            <a class="button tiny radius" href="Request.php?class=app\controller\ItemCtr&method=showView">Cadastrar</a>
+        </div>
+    </div> 
+</form>
+<br/>
+<div class="row">
+    <hr/>
+    <h5 class="text-left">Listagem</h5>
+    <br/>
+    <div class="small-12 medium-12 large-12 columns">
+        <table class="show-for-medium-up medium-12 large-12 columns">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nome</th>
+                    <th>Valor Base</th>
+                    <th>Ver item</th>
+                </tr>
+            </thead>
+            <tbody id="tabelaGrande">
+            </tbody>
+        </table>
+        <div class="show-for-small-only small-12">
+            <table class="small-12 columns">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nome</th>
+                        <th>Ver item</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelaPequena">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

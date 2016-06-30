@@ -25,18 +25,19 @@ class CategoriaCtr extends \core\mvc\Controller {
     public function showList() {
         try {
             $dados = null;
-            if ($this->post) {
-                $nome = $this->post['nome'];
-                $operacao = $operacao = $this->post['operacao'];
-                $select = "upper(" . \app\dao\CategoriaDao::TB_NOME . ") like upper('{$nome}%') ";
-                if ($operacao == "C" || $operacao == "D") {
-                    $select = $select . " AND " . \app\dao\CategoriaDao::TB_OPERACAO . "= '{$operacao}'";
-                }
-                $dados = $this->dao->selectAll($select, \app\dao\CategoriaDao::TB_NOME);
-            }
+            /* if ($this->post) {
+              $nome = $this->post['nome'];
+              $operacao = $operacao = $this->post['operacao'];
+              $select = "upper(" . \app\dao\CategoriaDao::TB_NOME . ") like upper('{$nome}%') ";
+              if ($operacao == "C" || $operacao == "D") {
+              $select = $select . " AND " . \app\dao\CategoriaDao::TB_OPERACAO . "= '{$operacao}'";
+              }
+              $dados = $this->dao->selectAll($select, \app\dao\CategoriaDao::TB_NOME);
+              } */
             $view = new \app\view\categoria\CategoriaList($dados);
         } catch (\Exception $ex) {
-            $view = new \core\mvc\view\Message(\core\Application::MSG_ERROR . " . {$ex->getMessage()}");
+            //$view = new \core\mvc\view\Message(\core\Application::MSG_ERROR . " . {$ex->getMessage()}");
+            $view = new \app\view\categoria\CategoriaList($dados);
         } finally {
             $view->show();
         }

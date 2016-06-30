@@ -26,7 +26,7 @@
                     <span class="prefix">R$</span>
                 </div>
                 <div class="small-9 columns">
-                    <input type="number" name="valortotal" id="valorbase" value="<?php if ($this->model->getTotal() == "") { ?>0.00<?php
+                    <input type="number" name="valortotal" step="0.01" id="valorbase" value="<?php if ($this->model->getTotal() == "") { ?>0.00<?php
                     } else {
                         echo $this->model->getTotal();
                     }
